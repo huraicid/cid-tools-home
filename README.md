@@ -14,7 +14,6 @@ huraicid's tools main page.
 - app/assets/css/main.css — グローバル CSS
 - public/robots.txt — 公開用ファイル
 - LICENSE — ライセンス
-- .gitignore — Git igrone設定
 
 ## 開発手順
 1. 依存関係をインストール:

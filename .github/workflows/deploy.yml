@@ -30,8 +30,8 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           port: ${{ secrets.VPS_SSH_PORT }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          source: ".output/*"
-          target: "/var/www/cid-tools-home/.output"
+          source: ".output"
+          target: "/var/www/cid-tools-home/"
 
       - name: Restart service on VPS
         uses: appleboy/ssh-action@v0.1.10

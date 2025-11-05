@@ -1,19 +1,18 @@
-name: Deploy to VPS
+name: Deploy Nuxt Home
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ] # ← mainブランチにpushされたらデプロイ
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -21,25 +20,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build project
+      - name: Build for production (SSR)
         run: npm run build
 
-      - name: Deploy to VPS via SSH
-        uses: appleboy/scp-action@v0.1.7
+      - name: Upload files to VPS
+        uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
+          port: ${{ secrets.VPS_PORT }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          source: ".output,package.json,package-lock.json"
-          target: "/var/www/cid-tools-home"
+          source: ".output/*"
+          target: "/var/www/cid-tools-home/.output"
 
-      - name: Restart service
-        uses: appleboy/ssh-action@v0.1.7
+      - name: Restart service on VPS
+        uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
+          port: ${{ secrets.VPS_PORT }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd /var/www/cid-tools-home
-            npm ci --omit=dev
-            sudo systemctl restart cid-tools-home
+            echo "Restarting cid-tools-home.service..."
+            sudo systemctl restart cid-tools-home.service
+            sudo systemctl status cid-tools-home.service --no-pager

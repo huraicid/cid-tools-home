@@ -4,5 +4,8 @@
     <p>
       TODO: Create your Nuxt SSR application starting from this page.
     </p>
+    <p>
+      Last Modified: 2025/11/6 0:28
+    </p>
   </div>
 </template>

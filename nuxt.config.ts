@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'Nuxt Home',
+      title: 'huraicid Home',
     },
   },
   css: ['@/assets/css/main.css'],

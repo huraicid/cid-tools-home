@@ -24,7 +24,7 @@ const props = defineProps<{
 }>()
 
 // local defaults
-const actualUi = props.ui ?? { item: 'basis-1/3' }
+const actualUi = props.ui ?? { item: 'basis-1/4' }
 const arrows = props.arrows ?? true
 const dots = props.dots ?? true
 
@@ -59,5 +59,9 @@ const items: Item[] = [
 
 <style scoped>
 /* 必要に応じて調整 */
-.links-carousel { display: block; }
+.links-carousel { 
+  display: block; 
+  width: 540px;
+  padding-bottom: 3em;
+}
 </style>

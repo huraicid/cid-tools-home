@@ -1,9 +1,9 @@
 <template>
-  <div class="links-carousel">
-    <UCarousel v-slot="{ item }" :arrows="arrows" :dots="dots" :items="items" :ui="actualUi">
-      <LinkCard v-if="item" :item="item" />
-    </UCarousel>
-  </div>
+    <div class="links-grid">
+        <div :class="`grid gap-4 ${actualUi.grid}`">
+        <LinkCard v-for="(item, index) in items" :key="index" :item="item" />
+        </div>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -19,14 +19,10 @@ interface Item {
 // define props without withDefaults to avoid the type mismatch
 const props = defineProps<{
   ui?: Record<string, any>
-  arrows?: boolean
-  dots?: boolean
 }>()
 
 // local defaults
-const actualUi = props.ui ?? { item: 'basis-1/4' }
-const arrows = props.arrows ?? true
-const dots = props.dots ?? true
+const actualUi = props.ui ?? { grid: 'grid-cols-2' }
 
 // fixed items inside component — Vite asset resolution via new URL
 const items: Item[] = [
@@ -59,9 +55,10 @@ const items: Item[] = [
 
 <style scoped>
 /* 必要に応じて調整 */
-.links-carousel { 
-  display: block; 
-  max-width: 540px;
-  padding-bottom: 3em;
+.links-grid { 
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0px;
+  padding: 16px;
+  width: min(100%, 300px);
 }
 </style>

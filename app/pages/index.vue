@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import LinksGrid from '~/components/LinksGrid.vue';
+import ToolCard from '~/components/ToolCard.vue';
+import { tools } from '~/data/tools';
 </script>
 
 <template>
@@ -24,7 +26,16 @@ import LinksGrid from '~/components/LinksGrid.vue';
       <!-- Tools -->
       <div class="flex flex-col items-center justify-center text-center space-y-4 w-full mt-8">
         <h2 class="text-2xl font-semibold">Tools</h2>
-        <p>Coming soon...</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <ToolCard
+              v-for="tool in tools"
+              :key="tool.id"
+              :title="tool.name"
+              :description="tool.description"
+              :url="tool.url"
+              :icon="tool.icon"
+            />
+        </div>
       </div>
     </div>
   </div>
@@ -33,3 +44,6 @@ import LinksGrid from '~/components/LinksGrid.vue';
     <p class="text-sm text-gray-500">(C) 2025 huraicid. All rights reserved.</p>
   </footer>
 </template>
+
+
+

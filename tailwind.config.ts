@@ -11,3 +11,7 @@ export default {
   },
   plugins: [],
 }
+
+module.exports = {
+  darkMode: 'media', // ← OS設定に自動追従
+}

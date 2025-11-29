@@ -5,7 +5,7 @@ import { tools } from '~/data/tools';
 </script>
 
 <template>
-  <div class="dark" style="text-align:center; margin:3rem;">
+  <div style="text-align:center; margin:3rem;">
     <div class="container mx-auto px-4">
       <h1>huraicid's Home Page</h1>
 

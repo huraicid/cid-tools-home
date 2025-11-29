@@ -1,6 +1,21 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
-@custom-variant dark (&:where(.dark, .dark *));
+
+/* ダークモード */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #111;
+    color: white;
+  }
+}
+
+/* ライトモード */
+@media (prefers-color-scheme: light) {
+  body {
+    background: white;
+    color: black;
+  }
+}
 
 @layer base {
   h1 {
